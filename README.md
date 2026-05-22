@@ -1,14 +1,13 @@
-﻿## Segmentasi_G231.22.0038_AgungDwi
+## Segmentasi_G231.22.0038_AgungDwi
 ---
 
-```markdown
 # 🧩 Computer Vision Pipeline: Image Segmentation & Grouping Hub
 
 Aplikasi web berbasis Python untuk melakukan segmentasi citra digital secara sekuensial. Aplikasi ini memuat 25 gambar dari dataset lokal (seperti *Stanford Background* atau *MS COCO*) dan memprosesnya menggunakan **4 metode segmentasi inti** untuk mengelompokkan karakteristik objek berdasarkan warna, tepi, dan wilayah homogen secara real-time.
 
 ## 🌐 Link Uji Coba
 Aplikasi dapat diakses secara langsung melalui:
-👉 [(https://segmentasig231220038agungdwi.streamlit.app/)] 
+👉 [https://segmentasig231220038agungdwi.streamlit.app/](https://segmentasig231220038agungdwi.streamlit.app/)
 
 ---
 
@@ -56,50 +55,3 @@ tugas2_project_cv/
     ├── image1.jpg
     ├── image2.png
     └── ...
-
-```
-
----
-
-## 💻 Implementasi Kode Utama Segmentasi
-
-Berikut adalah potongan kode spesifik untuk masing-masing metode segmentasi yang diimplementasikan pada **Step 3**:
-
-### 1. Thresholding
-
-```python
-gray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
-_, thresh = cv2.threshold(gray, 0, 255, cv2.THRESH_BINARY + cv2.THRESH_OTSU)
-
-```
-
-### 2. Clustering (K-Means 3 Warna Utama)
-
-```python
-pixel_values = img.reshape((-1, 3))
-pixel_values = np.float32(pixel_values)
-criteria = (cv2.TERM_CRITERIA_EPS + cv2.TERM_CRITERIA_MAX_ITER, 10, 1.0)
-_, labels, centers = cv2.kmeans(pixel_values, 3, None, criteria, 10, cv2.KMEANS_RANDOM_CENTERS)
-
-```
-
-### 3. Edge-Based (Canny Edge)
-
-```python
-gray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
-edges = cv2.Canny(gray, 100, 200)
-
-```
-
-### 4. Region-Based (Distance Transform)
-
-```python
-dist_transform = cv2.distanceTransform(opening, cv2.DIST_L2, 5)
-_, sure_fg = cv2.threshold(dist_transform, 0.5 * dist_transform.max(), 255, 0)
-
-```
-
-> **Catatan Teknis:** Pemrosesan K-Means dilakukan murni memanfaatkan algoritma bawaan OpenCV (`cv2.kmeans`), sehingga aplikasi ini stabil dan tidak membutuhkan pustaka eksternal tambahan seperti *scikit-learn* pada file `requirements.txt`.
-
-
-```
