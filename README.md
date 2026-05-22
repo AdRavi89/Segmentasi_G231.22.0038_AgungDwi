@@ -8,7 +8,7 @@ Aplikasi web berbasis Python untuk melakukan segmentasi citra digital secara sek
 
 ## 🌐 Link Uji Coba
 Aplikasi dapat diakses secara langsung melalui:
-👉 [https://tugas2projectcv.streamlit.app/](https://tugas2projectcv.streamlit.app/) *(Sesuaikan dengan link aplikasi Anda)*
+👉 [(https://segmentasig231220038agungdwi.streamlit.app/)] 
 
 ---
 
